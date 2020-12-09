@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "472806515263",
+    "project_id": "semillafamiliarapp-danieldev",
+    "storage_bucket": "semillafamiliarapp-danieldev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472806515263:android:7229e44d32fd4a4c684e8a",
+        "android_client_info": {
+          "package_name": "com.example.semillafamiliarapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472806515263-91vjd1lh9q56vp3afsqb0ei4qtsif063.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.semillafamiliarapp",
+            "certificate_hash": "1f44b6260d2f07b31acec7fc404a2c317ed94abb"
+          }
+        },
+        {
+          "client_id": "472806515263-bmqgaovnkqt9vr6t007uua6to3sbjim2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8l0oAERKUUXSMWlOUX3k8Ec2DeTYh3gI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472806515263-bmqgaovnkqt9vr6t007uua6to3sbjim2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
