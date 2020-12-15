@@ -16,6 +16,9 @@ enum class ProviderType {
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+         /*esta es una prueba*/
+        setTheme(R.style.OverlayThemeLime)
+         /*fin esta es una prueba*/
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 

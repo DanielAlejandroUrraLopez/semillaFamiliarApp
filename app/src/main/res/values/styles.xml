@@ -8,4 +8,23 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="OverlayThemeLime" parent="Widget.Theme.SemillaFamiliarApp.ActionBar.Fullscreen">
+        <!--<item name="colorPrimary">@color/md_lime_500</item>-->
+        <!--<item name="colorPrimaryDark">@color/md_lime_700</item>-->
+        <!--<item name="colorAccent">@color/md_amber_A400</item>-->
+        
+        <!--<item name="android:background">@color/white</item>-->
+        <item name="android:textColor">@color/black</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/md_lime_700</item>
+        <item name="colorAccent">@color/md_amber_A400</item>
+
+    </style>
+
+    <style name="OverlayThemeRed" parent="Widget.Theme.SemillaFamiliarApp.ActionBar.Fullscreen">
+        <item name="colorPrimary">@color/md_red_500</item>
+        <item name="colorPrimaryDark">@color/md_red_700</item>
+        <item name="colorAccent">@color/md_yellow_A400</item>
+    </style>
 </resources>
