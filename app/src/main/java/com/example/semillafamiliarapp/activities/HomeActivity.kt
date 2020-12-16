@@ -1,6 +1,7 @@
 package com.example.semillafamiliarapp.activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.semillafamiliarapp.R
@@ -69,6 +70,16 @@ class HomeActivity : AppCompatActivity() {
 
             FirebaseAuth.getInstance().signOut()
             onBackPressed()
+        }
+
+        shareButton.setOnClickListener {
+            val intent = Intent()
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, emailTextView.text.toString())
+            intent.putExtra(Intent.EXTRA_SUBJECT,"prueba de envio de datos")
+            intent.action = Intent.ACTION_SEND
+            val chooserIntent = Intent.createChooser(intent, "elija una opcion")
+            startActivity(chooserIntent)
         }
 
     }
