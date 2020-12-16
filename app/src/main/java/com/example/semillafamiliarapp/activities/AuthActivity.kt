@@ -1,4 +1,4 @@
-package com.example.semillafamiliarapp
+package com.example.semillafamiliarapp.activities
 
 
 import android.content.Context
@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.semillafamiliarapp.R
+import com.example.semillafamiliarapp.enum.ProviderTypeEnum
+import com.example.semillafamiliarapp.enum.UtilStringEnum
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -37,8 +40,8 @@ class AuthActivity : AppCompatActivity() {
         // Analytics Event
         val analytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
-        bundle.putString("message", "Integracion de Firebase completa...")
-        analytics.logEvent("InitScreem", bundle)
+        bundle.putString(UtilStringEnum.MESSAGE.text, UtilStringEnum.INTEGRACION_DE_FIREBASE_COMPLETA.text)
+        analytics.logEvent(UtilStringEnum.INITSCREEM.text, bundle)
 
         //setup
         setup()
@@ -52,24 +55,24 @@ class AuthActivity : AppCompatActivity() {
 
     private fun session(){
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email = prefs.getString("email", null)
-        val provider = prefs.getString("provider", null)
+        val email = prefs.getString(UtilStringEnum.EMAIL.text, null)
+        val provider = prefs.getString(UtilStringEnum.PROVIDER.text, null)
 
         if(email != null && provider != null){
             authLayout.visibility = View.INVISIBLE
-            showHome(email, ProviderType.valueOf(provider))
+            showHome(email, ProviderTypeEnum.valueOf(provider))
         }
     }
 
     private fun setup(){
-        title = "Autenticación"
+        title = UtilStringEnum.AUTENTICACION.text
 
         logOutButton.setOnClickListener{
             if(emailTextView.text.isNotEmpty() && passwordTextView.text.isNotEmpty()){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTextView.text.toString(), passwordTextView.text.toString())
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                            showHome(it.result?.user?.email ?: "", ProviderTypeEnum.BASIC)
                         }else{
                             showAlert()
                         }
@@ -83,7 +86,7 @@ class AuthActivity : AppCompatActivity() {
                     .signInWithEmailAndPassword(emailTextView.text.toString(), passwordTextView.text.toString())
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                            showHome(it.result?.user?.email ?: "", ProviderTypeEnum.BASIC)
                         }else{
                             showAlert()
                         }
@@ -105,7 +108,7 @@ class AuthActivity : AppCompatActivity() {
 
         facebookButton.setOnClickListener {
 
-            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf(UtilStringEnum.EMAIL.text))
 
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult>{
@@ -117,7 +120,7 @@ class AuthActivity : AppCompatActivity() {
                             val credential = FacebookAuthProvider.getCredential(token.token)
                             FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    showHome(it.result?.user?.email ?: "", ProviderType.FACEBOOK)
+                                    showHome(it.result?.user?.email ?: "", ProviderTypeEnum.FACEBOOK)
                                 }else{
                                     showAlert()
                                 }
@@ -139,18 +142,18 @@ class AuthActivity : AppCompatActivity() {
 
     private fun showAlert(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error autenticando al usuario")
-        builder.setPositiveButton("Aceptar",null)
+        builder.setTitle(UtilStringEnum.ERROR.text)
+        builder.setMessage(UtilStringEnum.SE_HA_PRODUCIDO_UN_ERROR_AUTENTICANDO_AL_USUARIO.text)
+        builder.setPositiveButton(UtilStringEnum.ACEPTAR.text,null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
-    private fun showHome(email: String, provider: ProviderType) {
+    private fun showHome(email: String, provider: ProviderTypeEnum) {
 
         val homeIntent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider.name)
+            putExtra(UtilStringEnum.EMAIL.text, email)
+            putExtra(UtilStringEnum.PROVIDER.text, provider.name)
         }
         startActivity(homeIntent)
     }
@@ -172,7 +175,7 @@ class AuthActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            showHome(account.email ?: "", ProviderType.GOOGLE)
+                            showHome(account.email ?: "", ProviderTypeEnum.GOOGLE)
                         }else{
                             showAlert()
                         }

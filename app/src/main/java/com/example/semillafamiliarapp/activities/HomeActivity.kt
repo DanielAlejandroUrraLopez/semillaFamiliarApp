@@ -1,19 +1,18 @@
-package com.example.semillafamiliarapp
+package com.example.semillafamiliarapp.activities
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.semillafamiliarapp.R
+import com.example.semillafamiliarapp.enum.ProviderTypeEnum
+import com.example.semillafamiliarapp.enum.UtilStringEnum
 import com.example.semillafamiliarapp.utils.CircleTrasForm
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 
-enum class ProviderType {
-    BASIC,
-    GOOGLE,
-    FACEBOOK
-}
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,22 +25,22 @@ class HomeActivity : AppCompatActivity() {
 
         // setup
         val bundle: Bundle? = intent.extras
-        val email: String? = bundle?.getString("email")
-        val provider: String? = bundle?.getString("provider")
-        val nomUser: String? = bundle?.getString("nomUser")
+        val email: String? = bundle?.getString(UtilStringEnum.EMAIL.text)
+        val provider: String? = bundle?.getString(UtilStringEnum.PROVIDER.text)
+        val nomUser: String? = bundle?.getString(UtilStringEnum.NOMUSER.text)
         setup(email, provider,nomUser)
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.putString("email", email)
-        prefs.putString("provider", provider)
-        prefs.putString("nomUser", nomUser)
+        prefs.putString(UtilStringEnum.EMAIL.text, email)
+        prefs.putString(UtilStringEnum.PROVIDER.text, provider)
+        prefs.putString(UtilStringEnum.NOMUSER.text, nomUser)
         prefs.apply()
     }
 
     private fun setup(email: String?, provider: String?,nomUser: String?) {
 
-        title = "Inicio"
+        title = UtilStringEnum.INICIO.text
 
         if(email.isNullOrEmpty()){
             emailTextView.text = nomUser
@@ -64,7 +63,7 @@ class HomeActivity : AppCompatActivity() {
             prefs.clear()
             prefs.apply()
 
-            if (provider == ProviderType.FACEBOOK.name){
+            if (provider == ProviderTypeEnum.FACEBOOK.name){
                 LoginManager.getInstance().logOut()
             }
 

@@ -4,38 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    tools:context=".activities.StartActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="318dp" />
 
     <LinearLayout
         android:id="@+id/txtTexto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginTop="55dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/toolbar">
 
         <TextView
             android:id="@+id/textView5"
             style="stro"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Padre:" />
+            android:text="Padre"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="El rol paterno a su vez ha sido definido primordialmente como proveedor económico, sustentador de la autoridad, responsable del grupo familiar. Así, el padre representa para el niño el prototipo del mundo real, fuera de la familia y en este rol es el primer agente humano que liga al niño con la sociedad."
+            android:justificationMode="inter_word"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView6"
+            style="stro"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Hijo"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:justificationMode="inter_word"
+            android:text=" El rol de los hijos hacia el padre tiene su fuente en el afecto natural que se ha brindado en la familia. El niño debe ser grato con quines con su vida, amor y trabajo le han brindado afecto y le han ayudado a crecer en estatura y sabiduría."
+            android:textStyle="italic" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,16 +74,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Padre"
-            android:onClick="onClick"/>
+            android:text="Padre"/>
 
         <Button
             android:id="@+id/hijoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hijo"
-            android:onClick="onClick"/>
+            android:text="Hijo"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

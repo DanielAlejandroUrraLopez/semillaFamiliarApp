@@ -1,31 +1,32 @@
 package com.example.semillafamiliarapp.service
 
+import com.example.semillafamiliarapp.enum.UtilLongEnum
+import com.example.semillafamiliarapp.enum.UtilStringEnum
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_auth_hijo.*
 
 class FirestoreService {
 
     val db = FirebaseFirestore.getInstance()
 
     fun validateCreateUser(nomUser: String?): Int{
-        val capitalCities = db.collection("users")
-            .whereEqualTo("nomUser", nomUser).get()
-        Thread.sleep(2000L)
+        val capitalCities = db.collection(UtilStringEnum.USERS.text)
+            .whereEqualTo(UtilStringEnum.NOMUSER.text, nomUser).get()
+        Thread.sleep(UtilLongEnum.DOS_MIL.numLong)
 
         return capitalCities?.result?.documents?.size!!
     }
 
     fun createUser(nomUser: String,password: String){
-        db.collection("users").document(nomUser).set(
-            hashMapOf("nomUser" to nomUser,"pass" to password)
+        db.collection(UtilStringEnum.USERS.text).document(nomUser).set(
+            hashMapOf(UtilStringEnum.NOMUSER.text to nomUser,UtilStringEnum.PASS.text to password)
         )
     }
 
     fun validatePassUserNameUser(nomUser: String?,password: String?): Int{
-        val capitalCities = db.collection("users")
-            .whereEqualTo("nomUser", nomUser)
-            .whereEqualTo("pass", password).get()
-        Thread.sleep(2000L)
+        val capitalCities = db.collection(UtilStringEnum.USERS.text)
+            .whereEqualTo(UtilStringEnum.NOMUSER.text, nomUser)
+            .whereEqualTo(UtilStringEnum.PASS.text, password).get()
+        Thread.sleep(UtilLongEnum.DOS_MIL.numLong)
 
         return capitalCities?.result?.documents?.size!!
     }

@@ -1,9 +1,10 @@
-package com.example.semillafamiliarapp
+package com.example.semillafamiliarapp.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
+import com.example.semillafamiliarapp.R
+import com.example.semillafamiliarapp.enum.UtilLongEnum
 import java.util.*
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -12,17 +13,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Glide.with(this).load(R.drawable.mysplash).into(imageViewSplash)
-
         Timer().schedule(object:  TimerTask(){
 
             override fun run() {
-                val intent = Intent( this@SplashActivity,StartActivity::class.java )
+                val intent = Intent( this@SplashActivity, StartActivity::class.java )
                 startActivity(intent)
                 finish()
             }
 
-        }, 3000L)
+        }, UtilLongEnum.TRES_MIL.numLong)
 
 
     }
