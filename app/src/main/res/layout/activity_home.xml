@@ -24,6 +24,7 @@
             android:layout_height="40dp"
             android:ems="10"
             android:inputType="textEmailAddress"
+            android:textColor="#FFFFFF"
             tools:text="Emial" />
 
         <TextView
@@ -32,7 +33,14 @@
             android:layout_height="40dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Proveedor" />
+            android:text="Proveedor"
+            android:textColor="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="cerra sesión" />
+                android:text="cerra sesión"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </LinearLayout>

@@ -3,8 +3,10 @@ package com.example.semillafamiliarapp
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.semillafamiliarapp.utils.CircleTrasForm
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 
 enum class ProviderType {
@@ -26,20 +28,35 @@ class HomeActivity : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         val email: String? = bundle?.getString("email")
         val provider: String? = bundle?.getString("provider")
-        setup(email, provider)
+        val nomUser: String? = bundle?.getString("nomUser")
+        setup(email, provider,nomUser)
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
         prefs.putString("email", email)
         prefs.putString("provider", provider)
+        prefs.putString("nomUser", nomUser)
         prefs.apply()
     }
 
-    private fun setup(email: String?, provider: String?) {
+    private fun setup(email: String?, provider: String?,nomUser: String?) {
 
         title = "Inicio"
-        emailTextView.text = email
+
+        if(email.isNullOrEmpty()){
+            emailTextView.text = nomUser
+        }else{
+            emailTextView.text = email
+        }
+
         providerTextView.text = provider
+
+        Picasso.with(this)
+           /* .load("@drawable/imgavatar")*/
+            .load(R.drawable.imgavatar)
+            .fit()
+            .transform(CircleTrasForm()) //renderizar como un circulo
+            .into(imageViewAvatar)
 
         //borrar info de login
         logOutButton.setOnClickListener {
